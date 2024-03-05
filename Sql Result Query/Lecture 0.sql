@@ -24,6 +24,12 @@ SELECT MAX(rating) FROM ratings;
 SELECT MIN(rating) FROM ratings;
 SELECT SUM(rating) FROM ratings;
 
+SELECT DISTINCT year FROM books;
+
+SELECT ROUND(2.4464554,0);
+
+
+
 --SUBQURIES
 
 SELECT * FROM publishers;
@@ -78,6 +84,4 @@ WHERE id =
 
 
 
-SELECT DISTINCT year FROM books;
 
-SELECT ROUND(2.4464554,0);
