@@ -1,0 +1,40 @@
+--CREATE DATABASE CDA;
+
+CREATE TABLE riders(
+	id INTEGER PRIMARY KEY IDENTITY(1,1),
+	name VARCHAR(200)
+)
+
+CREATE TABLE stations(
+	id INTEGER IDENTITY(1,1),
+	name VARCHAR(200) NOT NULL UNIQUE,
+	line VARCHAR(200) NOT NULL,
+	PRIMARY KEY(id)
+)
+
+
+CREATE TABLE card
+(
+	id INTEGER IDENTITY(1,1) PRIMARY KEY
+)
+
+
+CREATE TABLE swipes(
+	id INTEGER IDENTITY(1,1),
+	card_id INTEGER,
+	station_id INTEGER,
+	type VARCHAR(200) NOT NULL CHECK(type IN ('enter','exit','deposit')),
+	datetime DATETIME NOT NULL DEFAULT GETDATE(),
+	amount INTEGER NOT NULL CHECK(amount > 0),
+	PRIMARY KEY(id),
+	FOREIGN KEY(card_id) REFERENCES card(id),
+	FOREIGN KEY(station_id) REFERENCES stations(id)
+);
+
+
+
+EXEC SP_COLUMNS swipes;
+
+EXEC SP_RENAME 'card.card_id', 'id', 'COLUMN';
+
+
